@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const Search = ({ clearUsers, showClear, searchUsers, setAlert }) => {
+  //    [stateName, funcToModifyStateName]
   const [username, setUsername] = useState('');
 
   const onSubmit = e => {
