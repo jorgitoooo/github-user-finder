@@ -22,6 +22,19 @@ class App extends Component {
     alert: null
   };
 
+  // getUser = async username => {
+  //   this.setState({ loading: true });
+
+  //   const res = await axios.get(
+  //     `https://api.github.com/users/${username}?client_id=${
+  //       process.env.REACT_APP_GITHUB_CLIENT_ID
+  //     }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
+  //   );
+
+  //   this.setState({ user: res.data, loading: false });
+  // };
+
+  // gets user
   getUser = async username => {
     this.setState({ loading: true });
 
@@ -34,18 +47,7 @@ class App extends Component {
     this.setState({ user: res.data, loading: false });
   };
 
-  getUser = async username => {
-    this.setState({ loading: true });
-
-    const res = await axios.get(
-      `https://api.github.com/users/${username}?client_id=${
-        process.env.REACT_APP_GITHUB_CLIENT_ID
-      }&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`
-    );
-
-    this.setState({ user: res.data, loading: false });
-  };
-
+  // gets user repositories
   getUserRepos = async username => {
     this.setState({ loading: true });
 
@@ -58,6 +60,7 @@ class App extends Component {
     this.setState({ repos: res.data, loading: false });
   };
 
+  // searches for users w/ username
   searchUsers = async username => {
     this.setState({ loading: true });
 
@@ -70,8 +73,10 @@ class App extends Component {
     this.setState({ users: res.data.items, loading: false });
   };
 
+  // clears searched users
   clearUsers = () => this.setState({ users: [], loading: false });
 
+  // sets alert if username input is empty
   setAlert = (msg, style) => {
     this.setState({ alert: { msg, style } });
     setTimeout(() => this.setState({ alert: null }), 5000);
