@@ -1,14 +1,17 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+
+import GithubContex from '../../context/github/githubContext';
 
 import Repos from '../repos/Repos';
 import Spinner from '../layout/Spinner';
 
-import PropTypes from 'prop-types';
+const User = ({ match }) => {
+  const githubContext = useContext(GithubContex);
+  const { user, loading, getUser, getUserRepos, repos } = githubContext;
 
-const User = ({ match, user, loading, repos, getUser, getUserRepos }) => {
-  // this runs anytime there's a change
-  // brackets are used to state when useEffect should run
+  // This runs anytime there's a change
+  // Brackets are used to state when useEffect should run
   // * ex. [user] = useEffect runs when the user changes
   // * ex. [] = useEffect runs once
   useEffect(() => {
@@ -95,14 +98,6 @@ const User = ({ match, user, loading, repos, getUser, getUserRepos }) => {
       <Repos repos={repos} />
     </Fragment>
   );
-};
-
-User.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  getUser: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
-  getUserRepos: PropTypes.func.isRequired,
-  repos: PropTypes.array.isRequired
 };
 
 export default User;
